@@ -46,3 +46,6 @@ This project is for academic and research purposes.
 
 ---
 Built with ❤️ for Leads University.
+
+
+---\n*Last deployed: 2026-04-30*
