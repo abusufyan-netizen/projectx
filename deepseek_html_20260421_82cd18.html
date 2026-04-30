@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, print-scale: 1.0">
+    <title>Academic Resource & Research Hub - Project Blueprint | Leads University</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Georgia', 'Times New Roman', serif;
+            background: #e9f0f5;
+            padding: 40px 20px;
+            color: #1a2c3e;
+        }
+
+        .document-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 24px;
+            padding: 40px 48px;
+            transition: all 0.2s;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .document-container {
+                box-shadow: none;
+                padding: 0.6in;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .print-hide {
+                display: none;
+            }
+            h1, h2, h3 {
+                break-after: avoid;
+            }
+            table, .usecase-diagram {
+                break-inside: avoid;
+            }
+            .wbs-table, .distribution-table {
+                break-inside: avoid;
+            }
+            .badge {
+                border: 1px solid #ccc;
+                background: #f9f9f9 !important;
+                color: black !important;
+            }
+        }
+
+        /* Typography & elements */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0b3b4f, #1b6b4a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.3px;
+        }
+
+        .uni-sub {
+            font-size: 1rem;
+            color: #2c6979;
+            border-left: 4px solid #2c9c6e;
+            padding-left: 16px;
+            margin: 12px 0 24px 0;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #2c9c6e;
+            display: inline-block;
+            color: #0f2b38;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin: 1.5rem 0 0.8rem 0;
+            color: #1e5a6c;
+        }
+
+        .scope-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin: 20px 0;
+        }
+
+        .scope-card {
+            flex: 1;
+            background: #f8fbfd;
+            border-radius: 20px;
+            padding: 1.2rem 1.5rem;
+            border-left: 6px solid;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .in-scope {
+            border-left-color: #2b7e4b;
+            background: #f0f9f4;
+        }
+        .out-scope {
+            border-left-color: #b13e3e;
+            background: #fff7f5;
+        }
+        .scope-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        .scope-card ul, .scope-card p {
+            margin-left: 1.2rem;
+            line-height: 1.5;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 24px;
+            font-size: 0.9rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background-color: #1f4e6e;
+            color: white;
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            border: 1px solid #d4dee5;
+            padding: 10px 12px;
+            vertical-align: top;
+            background-color: #ffffff;
+        }
+        tr:nth-child(even) td {
+            background-color: #fafcfd;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #eef2f5;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1f4e6e;
+        }
+
+        .usecase-diagram {
+            background: #fefef7;
+            border: 1px solid #cbdbe2;
+            border-radius: 24px;
+            padding: 20px;
+            font-family: 'Courier New', 'Fira Code', monospace;
+            font-size: 0.75rem;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.4;
+            margin: 20px 0;
+        }
+
+        .footer-note {
+            margin-top: 36px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #4f6f8f;
+            border-top: 1px solid #cbdae6;
+            padding-top: 20px;
+        }
+
+        button.print-btn {
+            background: #1f4e6e;
+            border: none;
+            color: white;
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            transition: 0.2s;
+            float: right;
+        }
+        button.print-btn:hover {
+            background: #0f3a52;
+        }
+
+        @media (max-width: 700px) {
+            .document-container {
+                padding: 24px 18px;
+            }
+            th, td {
+                font-size: 0.8rem;
+            }
+        }
+        .code-sample {
+            background: #f2f5f8;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            border-left: 4px solid #2c9c6e;
+            margin: 15px 0;
+        }
+        .wow-icon {
+            color: #cb6e2e;
+        }
+    </style>
+</head>
+<body>
+<div class="document-container">
+    <button class="print-btn print-hide" onclick="window.print();">🖨️ Print / Save as PDF</button>
+    <div style="clear:both"></div>
+    
+    <!-- Header -->
+    <h1>📚 Academic Resource & Research Hub</h1>
+    <div class="uni-sub">Leads University — Department of Computing & Engineering | Final Year Web Engineering Project</div>
+    
+    <!-- INTRODUCTION & SCOPE FOCUS -->
+    <h2>🔍 Introduction & Core Scope</h2>
+    <p style="margin-bottom: 12px; line-height: 1.5;"><strong>Introduction:</strong> The <strong>Academic Resource & Research Hub</strong> is a dynamic knowledge portal designed for faculty and students. It transforms static paper repositories into a collaborative research ecosystem. Faculty publish versioned research papers, students can <strong>“fork”</strong> resources for derivative work, and nested discussion threads encourage academic peer feedback. Built with <strong>HTML, CSS, JS, PHP</strong> – pure web engineering stack.</p>
+    
+    <div class="scope-grid">
+        <div class="scope-card in-scope">
+            <h4>✅ In-Scope (Core deliverables)</h4>
+            <ul>
+                <li>Document Versioning (manual v1, v2 via file renaming)</li>
+                <li>Forking mechanism – copy paper to student workspace + attribution</li>
+                <li>Categorization Engine: search/filter by <strong>subject, year, difficulty</strong></li>
+                <li>Discussion Thread: <strong>nested comments</strong> (reply-to-reply) per resource</li>
+                <li>Soft‑Delete system + data recovery (recycle bin)</li>
+                <li>Robust file validation: MIME type, extension, size <strong>before server save</strong></li>
+                <li>Multi-level permissions: Student (fork/comment) vs Faculty (upload/delete)</li>
+                <li>File‑path mapping & relative storage architecture</li>
+            </ul>
+        </div>
+        <div class="scope-card out-scope">
+            <h4>❌ Out-of-Scope (Clarity control)</h4>
+            <ul>
+                <li>No real‑time notifications / WebSockets / email alerts</li>
+                <li>No advanced AI or plagiarism detection</li>
+                <li>No SSO / OAuth – session‑based login only</li>
+                <li>No Docker/cloud deployment (local XAMPP / WAMP)</li>
+                <li>No automated background jobs (cron not mandatory)</li>
+            </ul>
+            <p style="margin-top: 8px;"><em>Focus remains on PHP business logic, database integrity, and interactive UI.</em></p>
+        </div>
+    </div>
+    
+    <!-- WORK BREAKDOWN STRUCTURE -->
+    <h2>📋 Work Breakdown Structure (WBS)</h2>
+    <p><em>Estimated total effort: 80–100 hours | Clear milestones for final project submission</em></p>
+    <table class="wbs-table">
+        <thead>
+            <tr><th>WBS ID</th><th>Task / Activity</th><th>Deliverable</th><th>Est. Hours</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>1.0</strong></td><td>Project Setup & DB Design</td><td>XAMPP environment, Git, ERD + SQL script</td><td>10</td></tr>
+            <tr><td>1.1</td><td>Install XAMPP, configure Git repo</td><td>Local dev environment ready</td><td>2</td></tr>
+            <tr><td>1.2</td><td>Design Database Schema (users, papers, versions, forks, comments, recycle_bin)</td><td>ER Diagram + SQL dump</td><td>6</td></tr>
+            <tr><td>1.3</td><td>Create config.php & base directories (/uploads, /recycle)</td><td>Folder scaffolding</td><td>2</td></tr>
+            <tr><td><strong>2.0</strong></td><td>Backend Core Logic (PHP)</td><td>Business layer modules</td><td>35</td></tr>
+            <tr><td>2.1</td><td>User Authentication (Login/Register/Session)</td><td>auth.php, secure sessions</td><td>6</td></tr>
+            <tr><td>2.2</td><td>File Validation Module (MIME, extension, size)</td><td>Validator class / helper</td><td>8</td></tr>
+            <tr><td>2.3</td><td>Upload & Versioning Logic (manual version increment)</td><td>upload_handler.php</td><td>8</td></tr>
+            <tr><td>2.4</td><td>Forking Mechanism (copy metadata + file reference)</td><td>fork_handler.php</td><td>5</td></tr>
+            <tr><td>2.5</td><td>Soft-Delete & Restore (recycle bin with restore key)</td><td>recycle_handler.php</td><td>8</td></tr>
+            <tr><td><strong>3.0</strong></td><td>Database Complexity (Nested comments & Permissions)</td><td>Advanced SQL / recursive logic</td><td>15</td></tr>
+            <tr><td>3.1</td><td>Nested comment system (recursive display / CTE or adjacency)</td><td>comment_system.php</td><td>8</td></tr>
+            <tr><td>3.2</td><td>Multi-level permissions (role-based UI restrictions)</td><td>permission_middleware.php</td><td>4</td></tr>
+            <tr><td>3.3</td><td>File‑path mapping (store relative paths, resolver)</td><td>path_resolver.php</td><td>3</td></tr>
+            <tr><td><strong>4.0</strong></td><td>Frontend (HTML, CSS, JS)</td><td>Responsive UI & interactivity</td><td>20</td></tr>
+            <tr><td>4.1</td><td>Dashboard UI (Bootstrap / Tailwind custom)</td><td>index.html + style.css</td><td>8</td></tr>
+            <tr><td>4.2</td><td>Categorization Engine with AJAX filters</td><td>filter.js (dynamic search)</td><td>6</td></tr>
+            <tr><td>4.3</td><td>Discussion Thread UI (nesting via JS + comment display)</td><td>comments.js</td><td>6</td></tr>
+            <tr><td><strong>5.0</strong></td><td>Testing & Documentation</td><td>Final validation & project pack</td><td>10</td></tr>
+            <tr><td>5.1</td><td>Unit testing (file upload, soft-delete, fork)</td><td>Test reports + bug fixes</td><td>5</td></tr>
+            <tr><td>5.2</td><td>Final WBS & Usecase diagrams / user manual</td><td>Documentation deliverable</td><td>5</td></tr>
+        </tbody>
+    </table>
+    
+    <!-- GROUP MEMBERS WORK DISTRIBUTION -->
+    <h2>👥 Group Members Work Distribution (4‑Member Team)</h2>
+    <table class="distribution-table">
+        <thead><tr><th>Member</th><th>Role</th><th>WBS Tasks Assigned</th><th>Key Responsibility</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Member A</strong> (Lead)</td><td>Backend & DB Architect</td><td>1.2, 1.3, 2.3, 2.4</td><td>Designing DB schema, Versioning, Forking logic & core repository mapping</td></tr>
+            <tr><td><strong>Member B</strong></td><td>Security & File Handler</td><td>2.2, 2.5, 3.3</td><td>File validation module, Soft-delete system, path mapping & recovery workflow</td></tr>
+            <tr><td><strong>Member C</strong></td><td>Frontend & UX Engineer</td><td>4.1, 4.2, 3.1 (frontend part)</td><td>HTML/CSS layout, Categorization UI, dynamic resource cards & AJAX filters</td></tr>
+            <tr><td><strong>Member D</strong></td><td>Integrations & Permissions</td><td>2.1, 3.2, 4.3, 5.0</td><td>Login system, permission middleware, nested comment backend logic, final testing</td></tr>
+        </tbody>
+    </table>
+    <p><span class="badge">🤝 Collaboration rule</span> Daily commits, code reviews. Member A oversees DB integrity; Member B ensures no malicious file passes validation; cross-testing before merge.</p>
+    
+    <!-- USECASE DIAGRAM (Textual + visual style) -->
+    <h2>📊 Use Case Diagram</h2>
+    <div class="usecase-diagram">
++-----------------------------------------------------------+
+|                 Academic Resource Hub                     |
++-----------------------------------------------------------+
+|                                                           |
+|  +----------------+        +----------------+            |
+|  |    Student     |        |    Faculty     |            |
+|  +----------------+        +----------------+            |
+|          |                         |                     |
+|          |  (Extends)              |  (Includes)         |
+|          v                         v                     |
+|  +----------------+        +----------------+            |
+|  |  Browse/Fork   |        | Upload Paper   |            |
+|  |  Papers        |        | (with version) |            |
+|  +----------------+        +----------------+            |
+|          |                         |                     |
+|          |  (Includes)             |  (Includes)         |
+|          v                         v                     |
+|  +----------------+        +----------------+            |
+|  | Post Comment   |        | Soft-Delete    |            |
+|  | (Nested)       |        | Own Paper      |            |
+|  +----------------+        +----------------+            |
+|          |                         |                     |
+|          |                         |  (Extends)          |
+|          |                         v                     |
+|          |                 +----------------+            |
+|          |                 | Restore from   |            |
+|          |                 | Recycle Bin    |            |
+|          |                 +----------------+            |
+|          |                         |                     |
+|          +-----------+-------------+                     |
+|                      |                                   |
+|                      v                                   |
+|            +--------------------+                        |
+|            | Categorization     |                        |
+|            | Engine (Search/     |                        |
+|            | Filter by subject,  |                        |
+|            | year, difficulty)   |                        |
+|            +--------------------+                        |
+|                      ^                                   |
+|                      |                                   |
+|                 +----+----+                              |
+|                 | System  |                              |
+|                 | (Validate|                              |
+|                 | MIME/Size)                             |
+|                 +---------+                              |
++-----------------------------------------------------------+
+
+<b>Actors:</b> Student, Faculty, System.
+- <b>Student:</b> Fork paper, Download, post nested comments.
+- <b>Faculty:</b> Upload new versions, soft-delete, restore resources.
+- <b>System:</b> Validates files (MIME, size, ext) before server-side save.
+    </div>
+    
+    <!-- ENGINEERING "WOW" FACTOR + File Validation Module Sample -->
+    <h2>⚙️ Engineering "Wow" Factor Implementation</h2>
+    <div style="background:#eef3fc; border-radius: 16px; padding: 16px; margin: 16px 0;">
+        <p><strong>✨ Soft‑Delete System + Data Recovery:</strong> Instead of permanent deletion, papers are moved to <code>recycle_bin</code> table with timestamp and restore_key. Faculty can restore within 7 days (configurable). Actual files remain in <code>/recycle</code> directory until purged.</p>
+        <p><strong>✨ File Validation Module (Pre‑server validation):</strong> Using PHP's <code>finfo_file()</code> to detect true MIME type, checking extension whitelist and size limit. Invalid uploads are rejected instantly, never saved to server. Below is the core logic pattern:</p>
+        <div class="code-sample">
+// File validation snippet (PHP) – prevents malicious uploads<br>
+$finfo = finfo_open(FILEINFO_MIME_TYPE);<br>
+$mime = finfo_file($finfo, $_FILES['paper']['tmp_name']);<br>
+$allowed_mimes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];<br>
+$max_size = 10 * 1024 * 1024; // 10MB<br>
+if (!in_array($mime, $allowed_mimes)) die("Invalid MIME type.");<br>
+if ($_FILES['paper']['size'] > $max_size) die("File too large.");<br>
+// extension validation & safe filename generation
+        </div>
+        <p><strong>📁 Database Complexity Highlights:</strong> Nested comments stored using adjacency list (parent_id), recursive query rendering; Multi-level permissions (student, faculty, optional admin). File‑path mapping ensures uploaded files are stored with UUID names and relative path stored in `versions` table for portability.</p>
+    </div>
+    
+    <!-- ADDITIONAL SCOPE FOCUS & DETAILS -->
+    <h2>🎯 Focus on Scope – Detailed Rationale</h2>
+    <p>The primary objective is to deliver a <strong>fully functional web portal</strong> that demonstrates practical research collaboration. The team will concentrate on:</p>
+    <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+        <li><strong>Document Versioning & Forking:</strong> Unique academic value – students can fork papers, build upon them, and faculty can track derivative works.</li>
+        <li><strong>Nested Comment Threads:</strong> Mimics real academic discussion (Q&A style). Each resource page will support unlimited nested replies.</li>
+        <li><strong>Security-First File Handling:</strong> Implementation of server-side validation prevents dangerous file uploads, a common web vulnerability.</li>
+        <li><strong>Soft-Delete with Restore:</strong> Emphasizes data resilience and recovery – adds professional-grade feature.</li>
+        <li><strong>Permission Enforcement:</strong> Faculty can edit/delete own papers, while students are limited to forking/commenting.</li>
+    </ul>
+    <p><strong>Tech Stack Constraints:</strong> Only <strong>HTML, CSS, JavaScript, PHP (vanilla)</strong> and MySQL. No frameworks like Laravel or React – ensures core web engineering understanding. The categorization engine will leverage SQL queries + AJAX for smooth user experience.</p>
+    
+    <!-- DATABASE SCHEMA OVERVIEW -->
+    <h2>🗄️ Database Schema Blueprint (Core Tables)</h2>
+    <div class="code-sample" style="background:#f1f5f9;">
+📌 users(id, name, email, password, role: 'student'/'faculty', created_at)<br>
+📌 papers(id, title, abstract, subject, year, difficulty_level, author_id, parent_paper_id NULL, forked_from_id NULL, status 'active'/'deleted')<br>
+📌 versions(id, paper_id, version_number, file_path, uploaded_at, size)<br>
+📌 forks(id, original_paper_id, forked_by_user_id, forked_version_id, created_at)<br>
+📌 comments(id, paper_id, user_id, parent_comment_id NULL, content, created_at)<br>
+📌 recycle_bin(id, original_table, original_id, file_path_backup, deleted_by, deleted_at, restore_key)<br>
+    </div>
+    <p><strong>Nested comment retrieval:</strong> using recursive PHP function or MySQL CTE (if MySQL 8+). Path mapping ensures uploaded files are stored under <code>/uploads/{year}/{subject_hash}/</code> for organized retrieval.</p>
+    
+    <!-- WBS & Group deliverables roadmap -->
+    <h2>📅 Project Milestones & Submission Plan</h2>
+    <table>
+        <thead><tr><th>Week</th><th>Focus Area</th><th>Deliverables</th></tr></thead>
+        <tbody>
+            <tr><td>Week 1</td><td>Environment + DB design + Auth</td><td>XAMPP ready, SQL schema, login/register pages</td></tr>
+            <tr><td>Week 2</td><td>File validation + Upload core + UI scaffolding</td><td>Working upload form, file validator, basic dashboard</td></tr>
+            <tr><td>Week 3</td><td>Versioning, Forking, Soft‑delete, Categorization</td><td>Functional fork button, recycle bin, category filter</td></tr>
+            <tr><td>Week 4</td><td>Nested comments, permissions, final polish & testing</td><td>Fully integrated portal + documentation + usecase diagrams</td></tr>
+        </tbody>
+    </table>
+    
+    <div style="background: #fef7e0; border-left: 6px solid #e6b422; padding: 14px 20px; border-radius: 14px; margin: 24px 0;">
+        <p><strong>📢 Final Note:</strong> The Academic Resource Hub aligns perfectly with Leads University’s research-driven environment. All source code will be modular, commented, and version-controlled. The combination of <strong>soft-delete, forking, nested comments, and rigorous file validation</strong> demonstrates advanced engineering maturity beyond basic CRUD.</p>
+        <p style="margin-top: 8px;"><strong>Group coordination:</strong> Member A maintains repository, Member B ensures file security, Member C delivers responsive UI, Member D integrates permission & testing. Weekly syncs on Friday.</p>
+    </div>
+    
+    <div class="footer-note">
+        Academic Resource & Research Hub © 2026 — Leads University, Dept of Web Engineering.<br>
+        Final Project Blueprint | WBS, Use Case, Scope Focus, and Group Distribution
+    </div>
+</div>
+</body>
+</html>

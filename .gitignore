@@ -1,0 +1,7 @@
+database_export.sql
+replace_paths.php
+storage/uploads/*
+!storage/uploads/.gitkeep
+.antigravityignore
+.DS_Store
+Thumbs.db
