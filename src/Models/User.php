@@ -13,8 +13,8 @@ class User {
     }
 
     public function create($data) {
-        $sql = "INSERT INTO users (name, email, password, role, department, semester) 
-                VALUES (:name, :email, :password, :role, :dept, :sem)";
+        $sql = "INSERT INTO users (name, email, password, role, department, semester, status) 
+                VALUES (:name, :email, :password, :role, :dept, :sem, :status)";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([
             ':name' => $data['name'],

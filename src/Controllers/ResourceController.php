@@ -114,7 +114,7 @@ class ResourceController {
         } else {
             $_SESSION['error'] = "Failed to post comment.";
         }
-        header('Location: ' . \Hub\Core\Config::BASE_URL . '/view/$id');
+        header("Location: " . \Hub\Core\Config::BASE_URL . "/view/$id");
         exit;
     }
 
