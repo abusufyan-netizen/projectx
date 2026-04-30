@@ -4,18 +4,18 @@ namespace Hub\Core;
 
 class Config {
     // --- DATABASE CONFIGURATION ---
-    // IMPORTANT: Change these to your InfinityFree Database Credentials when deploying!
-    const DB_HOST = 'localhost'; 
-    const DB_NAME = 'academic_hub'; 
-    const DB_USER = 'root'; 
-    const DB_PASS = ''; 
+    // Change these to your InfinityFree Database Credentials!
+    const DB_HOST = 'sqlxxx.infinityfree.com'; 
+    const DB_NAME = 'if0_xxxx_academic_hub'; 
+    const DB_USER = 'if0_xxxx'; 
+    const DB_PASS = 'your_password'; 
     
     const SITE_NAME = 'Leads Academic Hub';
     
     // --- BASE URL CONFIGURATION ---
     // For local XAMPP use: '/ProjectX/public'
     // For InfinityFree use: '' (empty string)
-    const BASE_URL = '/ProjectX/public';
+    const BASE_URL = '';
     const UPLOAD_DIR = __DIR__ . '/../../storage/uploads/';
     
     const ALLOWED_EXTENSIONS = ['pdf', 'docx', 'pptx'];

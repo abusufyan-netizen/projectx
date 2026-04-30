@@ -1,3 +1,4 @@
+src/Core/Config.php
 database_export.sql
 replace_paths.php
 storage/uploads/*
