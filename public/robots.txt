@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /trash/
+Disallow: /storage/
+
+Sitemap: https://leadshub.xo.je/sitemap.xml
